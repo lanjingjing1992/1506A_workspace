@@ -52,12 +52,43 @@
 #         print money
 
 #请计算出100以内的偶数和
-sum=0
-for i in range(101):#o-100包括0但是不包括100
-    sum+=i
+# sum=0
+# for i in range(101):#o-100包括0但是不包括100
+#     sum+=i
+#
+#
+# print sum
+class Shopping:
+    def shop(self):#当前类对象的一个引用
+        self.name='bob'#属性
+        self.map={'1':['体恤','$570'],'2':['网球鞋','$245'],'3':['网球拍','$300']}
+
+        print 'Myshopping结算管理系统 > 结算：\n' \
+              '**********************************\n' \
+              '请选择购买的商品编号：\n' \
+              '1 体恤    2 网球鞋   3 网球拍\n' \
+              '***********************************'
+        self.select()
+
+    def select(self):
+        id=raw_input('请输入编号：')
+        print self.map[id][0]
+        print self.map[id][1]
+        y_n=raw_input('是否继续输入，输入n结束，输入其他继续')
+        if y_n=='n':
+            print '结束'
+            return
+        else:
+            self.select()
 
 
-print sum
+
+
+
+shopping=Shopping()
+shopping.shop()
+
+
 
 
 
