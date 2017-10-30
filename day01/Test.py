@@ -61,7 +61,7 @@
 class Shopping:
     def shop(self):#当前类对象的一个引用
         self.name='bob'#属性
-        self.map={'1':['体恤','$570'],'2':['网球鞋','$245'],'3':['网球拍','$300']}
+        self.map={'1':['体恤','$570'],'2':['网球鞋','$245'],'3':['网球拍','$300']}#字典
 
         print 'Myshopping结算管理系统 > 结算：\n' \
               '**********************************\n' \
@@ -83,10 +83,8 @@ class Shopping:
 
 
 
-
-
-shopping=Shopping()
-shopping.shop()
+shopping=Shopping()#创建对象
+shopping.shop()#调用方法
 
 
 
