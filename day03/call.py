@@ -2,7 +2,7 @@
 from day03 import Test
 
 
-r=Test.Recursion()
+# r=Test.Recursion()
 # print r.recursion5(5)
 # print r.rubbitnum(8)
 # sum=0.0
@@ -20,5 +20,7 @@ r=Test.Recursion()
 #
 #
 # print sum
-r.listtest()
-
+# r.listtest()
+c=Test.Customer()#创建对象
+# c.login()#登陆
+c.order()
