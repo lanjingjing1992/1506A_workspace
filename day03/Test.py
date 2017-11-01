@@ -1,6 +1,8 @@
 #coding=utf-8
 
 class  Recursion:
+    def __init__(self):
+        self.list=[]
     def  recursion5(self,num):#num为参数  求num的阶乘  特点：定义方法 根据参数判断出节点  一个节点有固定值 其他的数字向节点推进
         if num==1:
             return 1
@@ -34,6 +36,23 @@ class  Recursion:
             return num1
         else:
             return self.calcAdd(num1,num2-1)*10+num1
+    def listtest(self):
+
+        name=raw_input('请输入姓名')
+
+        self.list.append(name)
+        y_n=raw_input('是否继续添加 输入y则继续，输入其他结束')
+        if y_n=='y':
+            self.listtest()
+        else:
+            print '**************************\n' \
+                  '          客户姓名列表          \n'
+            for i in self.list:#列表的遍历
+                print i,
+            # for i in range(len(self.list)):
+            #     print self.list[i]
+            print '***************************'
+
 
 
 
@@ -56,11 +75,11 @@ r=Recursion()
 # sum=0
 # for i in range(1,num2+1,1):
 #     sum+= r.calcAdd(num1,i)
-
-
-
+#
+#
+#
 # print sum
-# print 5**5
+r.listtest()
 
 
 
