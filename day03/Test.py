@@ -36,6 +36,11 @@ class  Recursion:
             return num1
         else:
             return self.calcAdd(num1,num2-1)*10+num1
+
+
+
+
+
     def listtest(self):
 
         name=raw_input('请输入姓名')
@@ -51,7 +56,80 @@ class  Recursion:
                 print i,
             # for i in range(len(self.list)):
             #     print self.list[i]
-            print '***************************'
+            print '\n***************************'
+
+
+
+class Customer:
+    def __init__(self):
+        self.str='*********************************\n' \
+                 '编号   菜品名称    价格    数量   小计\n'
+        self.count=0
+        self.name='admin'
+        self.pw='123'
+        self.map={1:['鱼香肉丝',16],2:['糖醋里脊',21],3:['酱牛肉',38],4:['老干妈炒饭',8]}
+    def order(self):
+        num=raw_input('如果是管理员的话请输入1，顾客的话输入其他')
+        if num=='1':
+            self.login()
+        else:
+            self.menu()
+
+    def login(self):
+        n=raw_input('请输入管理员姓名')
+        if n==self.name:
+            p=raw_input('请输入密码：')
+            if p==self.pw:
+                print 'welcome'
+                #添加菜品 价格
+                y_n = raw_input('是否添加菜品，输入y则添加，输入其他退出')
+                if y_n == 'y':
+                    self.addMenu()
+
+
+                else:
+                    print '退出'
+                    return
+
+            else:
+                print '密码错误，请重新输入'
+                self.login()
+        else:
+            print '姓名错误，请重新输入'
+            self.login()
+    def addMenu(self):
+        print '当前编号为%s' % len(self.map)
+        name = raw_input('请输入新菜品的名称')
+        price = int(raw_input('请输入新菜品价格'))
+        self.map.update({len(self.map) + 1: [name, price]})
+        y_n = raw_input('是否继续添加 输入y则继续，输入其他结束')
+        if y_n == 'y':
+            self.addMenu()
+        else:
+            self.menu()
+
+
+    def menu(self):
+        print '菜品展示:\n' \
+              '编号        菜品名称        价格\n' \
+              '--------------------------------'
+        for i in range(1,len(self.map)+1,1):
+            print '%s         %s         %s'%(i,self.map[i][0],self.map[i][1])
+        print '--------------------------------'
+        id=int(raw_input('请根据菜单输入您所需菜品名称的编号'))
+        num=int(raw_input('请输入数量'))
+        price=self.map[id][1]
+        sum=num*price#小计
+        name=self.map[id][0]
+        self.count+=sum
+        self.str+='%s     %s      %s      %s     %s\n'%(id,name,price,num,sum)
+        y_n=raw_input('是否继续点餐 是的话输入y，否则的话输入其他')
+        if y_n=='y':
+            self.menu()
+        else:
+            self.str+='***********************************\n'
+            print self.str
+            print '总计：   %s'%self.count
 
 
 
@@ -61,25 +139,8 @@ class  Recursion:
 
 
 
-r=Recursion()
-# print r.recursion5(5)
-# print r.rubbitnum(8)
-# sum=0.0
-# for i in range(1,21,1):
-#     sum+=float(r.calcmolecule(i)/r.calcdenominator(i))
 
 
-# print sum
-# num1=int(raw_input('请输入数字：'))
-# num2=int(raw_input('请输入共有几个数字相加'))
-# sum=0
-# for i in range(1,num2+1,1):
-#     sum+= r.calcAdd(num1,i)
-#
-#
-#
-# print sum
-r.listtest()
 
 
 
