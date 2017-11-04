@@ -2,12 +2,12 @@
 from selenium import webdriver
 from time import sleep
 from selenium.webdriver.common.action_chains import ActionChains#鼠标事件
-from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.keys import Keys#键盘事件
 
 d=webdriver.Chrome()
 
 #打开百度网址
-d.get('https://i.qq.com/')
+d.get('https://qzone.qq.com/')
 #百度页面点击新闻
 # d.find_element_by_link_text('新闻').click()#点击新闻
 # sleep(2)
@@ -54,3 +54,17 @@ d.get('https://i.qq.com/')
 # d.find_element_by_name('password').send_keys('123456')
 # d.find_element_by_id('dologin').click()
 #qq空间登陆
+d.switch_to_frame('login_frame')#切入到iframe
+#账号密码登陆
+d.find_element_by_xpath('//*[@id="switcher_plogin"]').click()
+#账号
+name=d.find_element_by_xpath('//*[@id="u"]')
+name.send_keys('2364365304')
+name.send_keys(Keys.TAB)#键盘事件换行
+#密码
+pw=d.find_element_by_xpath('//*[@id="p"]')
+pw.send_keys('123456')
+# pw.send_keys(Keys.ENTER)#键盘事件登陆
+#登陆
+d.find_element_by_id('login_button').click()
+sleep(5)
