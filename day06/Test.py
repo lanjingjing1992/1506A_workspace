@@ -53,3 +53,4 @@ d.get('https://i.qq.com/')
 # d.find_element_by_name('email').send_keys('15901337131')
 # d.find_element_by_name('password').send_keys('123456')
 # d.find_element_by_id('dologin').click()
+#qq空间登陆
