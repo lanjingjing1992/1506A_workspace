@@ -6,7 +6,7 @@ from selenium.webdriver.common.action_chains import ActionChains#鼠标事件
 d=webdriver.Chrome()
 
 #打开百度网址
-d.get('http://www.baidu.com')
+d.get('http://mail.163.com/')
 # d.find_element_by_link_text('新闻').click()#点击新闻
 # sleep(2)
 # d.back()
@@ -28,8 +28,17 @@ d.get('http://www.baidu.com')
 # alert=d.switch_to_alert()#弹出框
 # sleep(2)
 # alert.accept()#确定
-more=d.find_element_by_xpath('//*[@id="u1"]/a[9]')
-ActionChains(d).click_and_hold(more).perform()#点击更多产品
-d.find_element_by_link_text('糯米').click()#点击糯米
+# more=d.find_element_by_xpath('//*[@id="u1"]/a[9]')
+# ActionChains(d).click_and_hold(more).perform()#点击更多产品
+# d.find_element_by_link_text('糯米').click()#点击糯米
+# sleep(2)
+# d.back()#回退
+#邮箱账号登陆
+login=d.find_element_by_xpath('//*[@id="lbNormal"]')
+
+ActionChains(d).click_and_hold(login).perform()#鼠标事件
 sleep(2)
-d.back()#回退
+d.switch_to_frame('x-URS-iframe')
+d.find_element_by_name('email').send_keys('15901337131')
+d.find_element_by_name('password').send_keys('123456')
+d.find_element_by_id('dologin').click()
