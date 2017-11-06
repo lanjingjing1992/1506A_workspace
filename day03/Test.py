@@ -1,4 +1,5 @@
 #coding=utf-8
+from day07.file_test import FIleIoTest
 
 class  Recursion:
     def __init__(self):
@@ -128,8 +129,11 @@ class Customer:
             self.menu()
         else:
             self.str+='***********************************\n'
-            print self.str
-            print '总计：   %s'%self.count
+            # print self.str
+            self.str+= '总计：   %s'%self.count
+            fileioTest=FIleIoTest()
+            fileioTest.inputMenu(self.str)
+
 
 
 
