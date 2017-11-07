@@ -1,53 +1,46 @@
 #coding=utf-8
 from selenium import webdriver
+import time
 import unittest
-from time import sleep
-from HTMLTestRunner.HTMLTestRunner import HTMLTestRunner
 
 class Baidu(unittest.TestCase):
-    def setUp(self):#初始化的方法
-        self.driver=webdriver.Chrome()#谷歌浏览器
-        self.url='http://www.baidu.com'
+    def setUp(self):
+        #初始化的方法
+        self.driver=webdriver.Chrome()
+        self.baiduUrl='http://www.baidu.com'
         self.exceptions=[]
     def testSearch(self):
-        d=self.driver#区分局部变量跟属性的用法
-        d.get(self.url)#打开网址
-        d.find_element_by_id('kw').send_keys('selenium')#输入框
-        d.find_element_by_id('su').click()
-
-    def testLogin(self):
+        #测试方法体
         d=self.driver
-        d.get(self.url)
-        d.find_element_by_xpath('//*[@id="u1"]/a[7]').click()#登陆
-        d.implicitly_wait(30)
-        d.switch_to_alert()
         try:
-            d.find_element_by_xpath('//*[@id="pass_phoenix_btn"]/ul/li[1]/a').click()#qq登陆
+            d.get(self.baiduUrl)
+            d.find_element_by_id('kw').send_keys('八维')
+            d.find_element_by_id('su').click()
         except Exception,e:
             self.exceptions.append(e)
 
-        all_windows=d.window_handles#存储的所有的窗口
-        current_window=d.current_window_handle#当前的窗口
-        for window in all_windows:
-            if window!=current_window:#新的窗口
-                d.switch_to_window(window)#跳转窗口
-        d.switch_to_frame('ptlogin_iframe')
-        d.find_element_by_id('img_out_2364365304').click()
+
+    def testYoudao(self):
+        d=self.driver
+        d.get('http://dict.youdao.com/')
+    def testQzone(self):
+        d=self.driver
+
+        d.get('https://qzone.qq.com/')#打开qq空间
+        d.switch_to_frame('login_frame')
+        d.find_element_by_id('switcher_plogin').click()
+        d.find_element_by_id('u').send_keys('23643653034')#输入qq号
+        d.find_element_by_id('p').send_keys('123456')#密码
+        d.find_element_by_id('login_button').click()#点击登陆
+
     def tearDown(self):
+        #退出浏览器
         if len(self.exceptions)!=0:
-            file=open('test.txt','w+')
-            file.write(str(self.exceptions))
-            file.close()
+            print self.exceptions
         self.driver.quit()
 
 if __name__ == '__main__':
-    suite=unittest.TestSuite()#创建测试集合
-    suite.addTest(Baidu('testSearch'))
-    suite.addTest(Baidu('testLogin'))
-    # unittest.main(defaultTest='suite')
-    runner=HTMLTestRunner(stream=open('result.html','w+'),title='lanjingjing',description='this is lanjingjing result')
-    runner.run(suite)
-
+    pass
 
 
 
